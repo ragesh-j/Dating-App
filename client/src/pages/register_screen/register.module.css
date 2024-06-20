@@ -1,0 +1,13 @@
+.form_input_div{
+    display: flex;
+    flex-direction: column;
+} 
+input{
+    width: 50%;
+    margin: 5px 0;
+    
+}
+.register_head{
+    font-size: xx-large;
+    font-weight: bolder;
+}
