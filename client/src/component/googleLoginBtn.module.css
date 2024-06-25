@@ -1,0 +1,20 @@
+.google_login_btn {
+    background: #4285F4;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.google_login_btn:hover {
+    background: #085de6;
+}
+@media (max-width: 768px) {
+    .google_login_btn{
+        padding: 0.5rem 1rem;
+        margin-top: 0.3rem;
+    }
+}

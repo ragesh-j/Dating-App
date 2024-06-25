@@ -1,0 +1,49 @@
+.promptContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: cover;
+    color: #080808;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background-color: #ccc;
+}
+
+.promptContainer h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 20px;
+}
+
+.yesButton, .noButton {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.yesButton {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.yesButton:hover {
+    background-color: #218838;
+}
+
+.noButton {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.noButton:hover {
+    background-color: #c82333;
+}

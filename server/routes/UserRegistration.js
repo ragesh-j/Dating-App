@@ -12,7 +12,8 @@ router.post('/registration',async(req,res)=>{
     try{
         let existingUser=await UserModel.findOne({contact})
         if (existingUser){
-            return res.status(400).json({message:"User already exist with this number."})
+           
+            return res.status(400).json({message:"User already exist with this number.",success:false})
         }
        
         client.verify.v2.services(process.env.TWILIO_SERVICE_ID)
@@ -22,15 +23,15 @@ router.post('/registration',async(req,res)=>{
         if (verification.status === 'pending') {
             tempData.set(contact,{first_name,last_name,email,contact,password:await bcrypt.hash(password,saltVal)})
             
-          res.status(200).json({ message: 'OTP sent to phone number' });
+          res.status(200).json({ message: 'OTP sent to phone number',success:true });
         } else {
-          res.status(500).json({ message: 'Error sending OTP' });
+          res.status(500).json({ message: 'Error sending OTP' ,success:false});
         }}).catch(error => {
-            res.status(500).json({ message: 'Error sending OTP', error: error.message });
+            res.status(500).json({ message: 'Error sending OTP', error: error.message ,success:false});
           });
     }
     catch(err){
-        res.status(500).json({ message: 'Error registering user', error: err.message });
+        res.status(500).json({ message: 'Error registering user', error: err.message ,success:false});
     }
 
 })
