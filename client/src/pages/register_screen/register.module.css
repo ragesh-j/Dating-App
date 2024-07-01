@@ -114,6 +114,13 @@ body {
 .otp_section button:hover {
     background: #20ad24;
 }
+.phoneInputContainer {
+  width: 100%;
+
+}
+
+
+
 
 @media (max-width: 768px) {
     .main_div {

@@ -1,0 +1,21 @@
+.react-tel-input .form-control {
+    width: 100%;
+    padding: 0.75rem 3rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    height: 2.6rem;
+  }
+  
+  .react-tel-input .form-control:focus {
+    outline: none;
+    border-color: var(--main-color);
+  }
+  
+  @media (max-width: 768px){
+    .react-tel-input .form-control{
+        height: 2.1rem;
+    }
+  }
+  

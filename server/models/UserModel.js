@@ -25,10 +25,6 @@ const userSchema = new mongoose.Schema({
         type: String,
        
       },
-      name: {
-        type: String,
-        
-      },
     registration_date:{
         type:Date
     }

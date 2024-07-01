@@ -1,0 +1,66 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 400px;
+    margin: 10% auto;
+    background-color: #f9f9f9;
+  }
+  
+  .section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .section label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .input_container {
+    margin-bottom: 10px;
+  }
+  
+  .input_field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  .radio_container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .radio_container label {
+    margin-bottom: 8px;
+  }
+  
+  .radio_input {
+    margin-right: 8px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  .err_msg {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+}

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import style from "./register.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
-import axios from '../../helpers/axios'
 import { useNavigate } from "react-router-dom";
-
+import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-input-2';
+import "./register.css"
 function Register_screen(){
   const navigate=useNavigate()
     const[userData,setUserData]=useState({
@@ -18,6 +19,9 @@ function Register_screen(){
         otp:"",
         condition:false
     })
+    const cleanPhoneNumber = (phone) => {
+        return phone.replace(/[^\d+]/g, '');
+      };
     const isValid=()=>{
         if(!userData.first_name || !userData.last_name || !userData.contact || !userData.email || !userData.password){
            setValid("All fields are mandatory")
@@ -52,7 +56,7 @@ function Register_screen(){
                 <input placeholder="First Name" value={userData.first_name} onChange={(e)=>{setUserData({...userData,first_name:e.target.value})}}/>
                 <input placeholder="Last Name" value={userData.last_name} onChange={(e)=>{setUserData({...userData,last_name:e.target.value})}}/>
                 <input placeholder="Email" value={userData.email} onChange={(e)=>{setUserData({...userData,email:e.target.value})}}/>
-                <input placeholder="Contact" value={userData.contact} onChange={(e)=>{setUserData({...userData,contact:e.target.value})}}/>
+                <PhoneInput containerClass={style.phoneInputContainer}  country={'in'} enableSearch  placeholder="Contact" value={userData.contact} onChange={(phone)=>{setUserData({...userData,contact:phone})}}/>
                 <input placeholder="Password" type="password" value={userData.password} onChange={(e)=>{setUserData({...userData,password:e.target.value})}}/>
                 </div>
             </div>
@@ -60,6 +64,7 @@ function Register_screen(){
                 <button className={style.submit_btn} onClick={async(e)=>{
                     e.preventDefault()
                     if(!isValid()) return
+                    const cleanedContact = await cleanPhoneNumber(userData.contact);
                     try{
                     const response=await fetch("http://localhost:8000/registration",
                         {
@@ -67,14 +72,14 @@ function Register_screen(){
                             headers:{
                                 'Content-Type':'application/json'
                             },
-                        body :JSON.stringify(userData)})
+                        body :JSON.stringify({...userData,contact:`+${cleanedContact}`})})
                         const data=await response.json()
                         if(response.ok){
                             setOtpTrue({
                                 ...otpTrue,
                                 condition:true
                             })
-                        
+                            
                         }
                         else{
                             setValid(data.message)
@@ -113,6 +118,7 @@ function Register_screen(){
                     })
                     const data=await response.json()
                     if(response.ok){
+                        localStorage.setItem("jwtToken",data.token)
                         navigate("/profile")
 
                     }

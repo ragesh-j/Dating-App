@@ -10,14 +10,7 @@ function RelationshipPurpose() {
     };
 
 
-    useEffect(()=>{
-        const urlParams=new URLSearchParams(window.location.search)
-        const token=urlParams.get('token')
-
-        if(token){
-            localStorage.setItem('jwtToken',token)
-        }
-    },[])
+  
 
     return (
         <div className={Purposestyles.purposeContainer}>
@@ -45,7 +38,7 @@ function RelationshipPurpose() {
             <div className={Purposestyles.submit_btn_div}>
                 <button className={Purposestyles.submit_btn} onClick={()=>{
                     if(purpose=='Short Term Relationship'){
-                        navigate("/profile")
+                        navigate("/genderPreference")
                     }
                     else if(purpose=='Long Term Relationship'){
                         navigate('/matrimony-splash')

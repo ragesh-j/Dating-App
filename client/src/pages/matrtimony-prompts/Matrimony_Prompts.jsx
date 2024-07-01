@@ -11,7 +11,7 @@ function MatrimonyPrompt() {
             <div className={matrimonyStyles.buttonGroup}>
                 <button className={matrimonyStyles.yesButton} >Yes</button>
                 <button className={matrimonyStyles.noButton} onClick={()=>{
-                    navigate('/profile');
+                    navigate('/genderPreference');
                 }}>No</button>
             </div>
         </div>

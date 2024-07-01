@@ -14,7 +14,8 @@ router.post("/signin",async (req,res)=>{
         if(!user){
             return res.status(400).json({message:"User not exist. Register as new user to continue"})
         }
-        const matchPassword=await bcrypt.compare(password,user.password)
+        
+        const matchPassword= await bcrypt.compare(password,user.password)
         if(!matchPassword){
             return res.status(400).json({message:"Invalid password"})
         }

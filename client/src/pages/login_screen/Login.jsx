@@ -1,7 +1,12 @@
 import { useState } from "react"
 import loginStyle from "./login.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
+import { useNavigate } from "react-router-dom";
+import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-input-2';
+import "../register_screen/register.css"
 function Login(){
+    const navigate=useNavigate()
     const[userLoginData,setUserLoginData]=useState({
         contact:"",
         password:""
@@ -14,7 +19,7 @@ function Login(){
                 <h2 className={`${loginStyle.login_head}`}>Log In</h2>
                  {validLogin && <div className={`${loginStyle.errmsg}`}>{validLogin}</div>} 
                 <div className={`${loginStyle.form_input_div}`}>
-                <input placeholder="Contact" value={userLoginData.contact} onChange={(e)=>{setUserLoginData({...userLoginData,contact:e.target.value})}}/>
+                <PhoneInput containerClass={loginStyle.phoneInputContainer}  country={'in'} enableSearch  placeholder="Contact" value={userLoginData.contact} onChange={(phone)=>{setUserLoginData({...userLoginData,contact:phone})}}/>
                 <input placeholder="Password" type="password" value={userLoginData.password} onChange={(e)=>{setUserLoginData({...userLoginData,password:e.target.value})}}/>
                 </div>
             </div>
@@ -31,7 +36,9 @@ function Login(){
                         body :JSON.stringify(userLoginData)})
                         const data=await response.json()
                         if(response.ok){
-                            console.log("hi")
+                            
+                            localStorage.setItem("jwtToken",data.token)
+                            navigate("/home")
                         
                         }
                         else{

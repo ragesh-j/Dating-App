@@ -17,13 +17,14 @@ passport.use(
             let user = await userdb.findOne({ googleId: profile.id });
 
             if (!user) {
+                
                 user = new userdb({
                     googleId: profile.id,
-                    displayName: profile.displayName,
+                    first_name: profile.name.givenName,
+                    last_name:profile.name.familyName,
                     email: profile.emails[0].value,
-                    image: profile.photos[0].value
                 });
-
+                
                 await user.save();
                 user.isNewUser=true;
             }else{
