@@ -80,6 +80,9 @@ body {
     width: 100%;
     
 }
+.form_input_div li{
+    list-style: none;
+}
 
 .submit_btn:hover {
     background: #20ad24;

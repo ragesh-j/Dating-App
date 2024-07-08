@@ -10,6 +10,14 @@ import NavBar from "./pages/Nav_bar/NavBar";
 import EmployementDetail from "./pages/employment_detail/EmployementDetail";
 import GenderPreference from "./pages/genderPreference/GenderPreference";
 import UserProfileDetails from "./pages/user_details/UserDetails";
+import Message from "./pages/message/Message";
+import ChatList from "./pages/chat_page/ChatList";
+import Sent from "./pages/sent_page/Sent";
+import ShortList from "./pages/shortList_page/ShortList";
+import ShortListedBy from "./pages/shortlistedBy_page/ShortListedBy";
+import Accept from "./pages/accept_page/Accept";
+import Receive from "./pages/recieved_page/Received";
+import Reject from "./pages/reject_page/Reject";
 function App() {
   const ConditionalNavBar = () => {
     const location = useLocation();
@@ -21,7 +29,6 @@ function App() {
     <BrowserRouter>
     <ConditionalNavBar />
     <Routes>
-      
       <Route path="/" element={<Splash />} />
       <Route path="/register" element={<Register_screen />}/>
       <Route path="/login" element={<Login />} />
@@ -32,6 +39,14 @@ function App() {
       <Route path="/genderPreference" element={<GenderPreference />} />
       <Route path='/home' element={<HomeFeed />} />
       <Route path="/home/userDetails/:id" element={<UserProfileDetails /> } />
+      <Route path="/home/message/:conversationId/:receiverId" element={<Message />} />
+      <Route path="/home/chatList" element={<ChatList />} />
+      <Route path="/home/sent" element={<Sent />} />
+      <Route path="/home/received" element={<Receive />} />
+      <Route path="/home/accept" element={<Accept />} />
+      <Route path="/home/shortList" element={<ShortList />}/>
+      <Route path="/home/shortListedBy" element={<ShortListedBy />}/>
+      <Route path="/home/reject" element={<Reject />} />
     </Routes>
     </BrowserRouter>
   </div>

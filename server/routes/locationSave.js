@@ -94,7 +94,8 @@ router.get('/nearby-users', authenticateTok, async (req, res) => {
             {
                 $match: { 
                     'userDetails._id': { $ne: new mongoose.Types.ObjectId(userId) },
-                    'profileDetails.gender': { $in: genderFilter } 
+                    'profileDetails.gender': { $in: genderFilter } ,
+                    'profileDetails.doNotShowFor': { $ne: new mongoose.Types.ObjectId(userId) }
                 },
             },
             {

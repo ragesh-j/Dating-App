@@ -8,16 +8,10 @@ function HomeFeed() {
   const [usersByInterests,setUsersByInterests]=useState([])
   const [usersByQualification,setUsersByQualification]=useState([])
   
-  const handleAccept = (userId) => {
-    console.log(`Accepted user ${userId}`);
-  };
-
-  const handleReject = (userId) => {
-    console.log(`Rejected user ${userId}`);
-  };
+  
 
   useEffect(() => {
-    console.log("hi")
+    
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
 
@@ -147,8 +141,7 @@ function HomeFeed() {
         <UserCard
           key={user.id}
           user={user}
-          onAccept={handleAccept}
-          onReject={handleReject}
+         
         />
       ))}
     </div>
@@ -159,8 +152,7 @@ function HomeFeed() {
         <UserCard
           key={user.id}
           user={user}
-          onAccept={handleAccept}
-          onReject={handleReject}
+  
         />
       ))}
     </div>
@@ -171,8 +163,7 @@ function HomeFeed() {
         <UserCard
           key={user.id}
           user={user}
-          onAccept={handleAccept}
-          onReject={handleReject}
+          
         />
       ))}
     </div>

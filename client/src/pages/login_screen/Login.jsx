@@ -1,7 +1,7 @@
 import { useState } from "react"
 import loginStyle from "./login.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import "../register_screen/register.css"
@@ -21,8 +21,11 @@ function Login(){
                 <div className={`${loginStyle.form_input_div}`}>
                 <PhoneInput containerClass={loginStyle.phoneInputContainer}  country={'in'} enableSearch  placeholder="Contact" value={userLoginData.contact} onChange={(phone)=>{setUserLoginData({...userLoginData,contact:phone})}}/>
                 <input placeholder="Password" type="password" value={userLoginData.password} onChange={(e)=>{setUserLoginData({...userLoginData,password:e.target.value})}}/>
+                <li><Link to="/register">Create a new account</Link></li>               
                 </div>
+                
             </div>
+            
             <div className={loginStyle.submit_btn_div}>
                 <button className={loginStyle.submit_btn} onClick={async(e)=>{
                     e.preventDefault()

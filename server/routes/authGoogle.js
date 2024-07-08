@@ -18,7 +18,7 @@ router.get("/auth/google/callback", (req, res, next) => {
         const token = data.token;
 
         if (data.user.isNewUser) {
-            return res.redirect(`http://localhost:3000/employement?token=${token}`);
+            return res.redirect(`http://localhost:3000/profile?token=${token}`);
         } else {
             return res.redirect(`http://localhost:3000/home?token=${token}`);
         }

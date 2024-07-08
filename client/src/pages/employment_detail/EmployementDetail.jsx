@@ -76,15 +76,7 @@ function EmployementDetail() {
 
  
 
-  useEffect(()=>{
-    const urlParams=new URLSearchParams(window.location.search)
-    const token=urlParams.get('token')
-
-    if(token){
-        localStorage.setItem('jwtToken',token)
-    }
-
-},[])
+ 
   return (
     <div className={employementStyle.main_container}>
         {valid&&<div className={employementStyle.err_msg}>{valid}</div>}

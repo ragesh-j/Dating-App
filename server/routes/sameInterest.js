@@ -40,6 +40,7 @@ router.get('/users-by-interests', authenticateToken, async (req, res) => {
                     user: { $ne: new mongoose.Types.ObjectId(userId) }, 
                     interests: { $elemMatch: { $in: userInterests } }, 
                     gender: { $in: genderFilter }, 
+                    doNotShowFor: { $ne: new mongoose.Types.ObjectId(userId) }
                 },
             },
 
@@ -96,6 +97,7 @@ router.get('/users-by-qualification', authenticateToken, async (req, res) => {
                     user: { $ne: new mongoose.Types.ObjectId(userId) }, 
                     qualification: userQualification, 
                     gender: { $in: genderFilter }, 
+                    doNotShowFor: { $ne: new mongoose.Types.ObjectId(userId) }
                 },
             },
 

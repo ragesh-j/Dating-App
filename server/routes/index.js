@@ -14,6 +14,16 @@ const employementRoutes=require("./employement")
 const locationRoutes=require("./locationSave")
 const sameInterestRoutes=require('./sameInterest')
 const profileView=require("./userProfileView")
+const doNotShowRoutes=require("./doNotShow")
+const requestRoutes=require('./request')
+const conversationRoutes=require('./conversation')
+const messageRoutes=require('./message')
+const chatListRoutes=require("./chatList")
+const sentListRoutes=require("./sent")
+const shortListRoutes=require("./shortList")
+const accpetListRoutes=require("./accept")
+const ReceivedRoutes=require('./recieved')
+const RejectRoutes=require("./reject")
 app.use(express.json());
 app.use(passport.initialize());
 
@@ -25,7 +35,14 @@ app.use("/",employementRoutes)
 app.use("/",locationRoutes)
 app.use("/",sameInterestRoutes)
 app.use("/",profileView)
-
-
-
+app.use("/",doNotShowRoutes)
+app.use("/",requestRoutes)
+app.use('/',conversationRoutes)
+app.use('/',messageRoutes)
+app.use("/",chatListRoutes)
+app.use("/",sentListRoutes)
+app.use("/",shortListRoutes)
+app.use("/",accpetListRoutes)
+app.use("/",ReceivedRoutes)
+app.use("/",RejectRoutes)
 module.exports=app

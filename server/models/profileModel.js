@@ -17,18 +17,12 @@ const profileSchema = new Schema({
     type: Number,
     required: true
   },
-  height:{
-    type:Number
-  },
   gender:{
     type:String,
     required: true
   },
   hobbies:{
     type:String
-  },
-  occupation: {
-    type: String
   },
   qualification: {
     type: String,
@@ -58,6 +52,7 @@ const profileSchema = new Schema({
   additionalImage3: {
     type: String
   },
+  doNotShowFor:[{ type:Schema.Types.ObjectId, ref: 'users' }],
   createdAt: {
     type: Date,
     default: Date.now

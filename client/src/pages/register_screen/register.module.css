@@ -119,7 +119,9 @@ body {
 
 }
 
-
+.form_input_div li{
+    list-style: none;
+}
 
 
 @media (max-width: 768px) {

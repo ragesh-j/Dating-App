@@ -1,8 +1,8 @@
-import React, {  useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import profileStyle from './profile.module.css';
 import image  from "../../assets/no-profile-picture-icon-35.png"
-
+import removeImge from "../../assets/kisspng-portable-network-graphics-computer-icons-scalable-guanbi-svg-png-icon-free-download-3-1672-onli-5b96461165cb49.076562961536574993417.png"
 import addImg from "../../assets/kisspng-linkedin-computer-icons-logo-vector-graphics-user-in-addition-svg-vector-icon-free-icons-uihere-5d1f3d583dcce5.7266464015623284082532.png"
 function ProfileForm() {
     const navigate=useNavigate()
@@ -25,7 +25,8 @@ function ProfileForm() {
         gender:"",
         interests:""
     });
-
+    const [isEditing,setIsEditing]=useState(false)
+    const method=isEditing ? 'PUT':'POST'
     const handleInputChange = (e) => {
         
         const { name, value } = e.target;
@@ -40,7 +41,7 @@ function ProfileForm() {
         }
         try{
         const response=await fetch("http://localhost:8000/profile",{
-            method:"POST",
+            method:method,
             headers:{
                 'Content-Type':'application/json',
                 'Authorization':`Bearer ${token}`
@@ -51,7 +52,11 @@ function ProfileForm() {
         })
         if(response.ok){
             const data=await response.json();
+            if(!isEditing){
             navigate("/employement")
+            }else{
+                navigate("/home")
+            }
             console.log(data.message)
         }else{
             console.log("failed to save")
@@ -81,6 +86,44 @@ function ProfileForm() {
           );
         }
       }
+      useEffect(()=>{
+        const urlParams=new URLSearchParams(window.location.search)
+        const token=urlParams.get('token')
+    
+        if(token){
+            localStorage.setItem('jwtToken',token)
+        }
+        const fetchProfile = async () => {
+            try {
+              const response = await fetch("http://localhost:8000/profile", {
+                method: "GET",
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+                },
+              });
+      
+              if (response.ok) {
+                const data = await response.json();
+                if (data) {
+                    console.log(data)
+                    const profileDob=data.dob ? data.dob.split('T')[0] : '';
+                  setProfile({
+                    ...data,
+                    dob:profileDob
+                  });
+                  setIsEditing(true);
+                }
+              } else {
+                console.log("No profile found");
+              }
+            } catch (err) {
+              console.log(err);
+            } 
+          };
+          fetchProfile();
+    
+    },[])
 
     return (
         <div className={profileStyle.main_div}>
@@ -112,6 +155,12 @@ function ProfileForm() {
                                 additionalImgRef1.current.click()
                             }
                         }} />
+                       { profile.additionalImage1&&<div className={profileStyle.remove_img}><img src={removeImge} onClick={()=>{
+                            setProfile({
+                                ...profile,
+                                additionalImage1:""
+                            })
+                        }}/></div>}
                     </div>
                     <div className={profileStyle.additional_img}>
                         {profile.additionalImage2&&<img className={profileStyle.addImg} src={profile.additionalImage2} alt='img' />}
@@ -121,6 +170,12 @@ function ProfileForm() {
                                 additionalImgRef2.current.click()
                             }
                         }} />
+                          { profile.additionalImage2&&<div className={profileStyle.remove_img}><img src={removeImge} onClick={()=>{
+                            setProfile({
+                                ...profile,
+                                additionalImage2:""
+                            })
+                        }}/></div>}
                     </div>
                     <div className={profileStyle.additional_img}>
                         {profile.additionalImage3&&<img className={profileStyle.addImg} src={profile.additionalImage3} alt='img' />}
@@ -130,11 +185,17 @@ function ProfileForm() {
                                 additionalImgRef3.current.click()
                             }
                         }} />
+                          { profile.additionalImage3&&<div className={profileStyle.remove_img}><img src={removeImge} onClick={()=>{
+                            setProfile({
+                                ...profile,
+                                additionalImage3:""
+                            })
+                        }}/></div>}
                     </div>
                 </div>
                 <div className={profileStyle.form_group}>
                     <h4>Bio</h4>
-                    <textarea className={profileStyle.textarea} name='bio' onChange={handleInputChange}></textarea>
+                    <textarea className={profileStyle.textarea} name='bio'value={profile.bio} onChange={handleInputChange}></textarea>
                 </div>
                 <div className={profileStyle.form_group}>
                     <label>Dob</label>

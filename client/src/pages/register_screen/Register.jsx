@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./register.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import "./register.css"
@@ -58,6 +58,7 @@ function Register_screen(){
                 <input placeholder="Email" value={userData.email} onChange={(e)=>{setUserData({...userData,email:e.target.value})}}/>
                 <PhoneInput containerClass={style.phoneInputContainer}  country={'in'} enableSearch  placeholder="Contact" value={userData.contact} onChange={(phone)=>{setUserData({...userData,contact:phone})}}/>
                 <input placeholder="Password" type="password" value={userData.password} onChange={(e)=>{setUserData({...userData,password:e.target.value})}}/>
+                <li><Link to="/login">Already have an account?</Link></li> 
                 </div>
             </div>
             <div className={style.submit_btn_div}>

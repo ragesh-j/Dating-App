@@ -1,0 +1,54 @@
+.shortList_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffff;
+    border-radius: 8px;
+    border: none;
+    margin: 1% 0;
+  }
+  .shortList_list :first-child{
+    grid-column: 1/-1;
+  }
+  .shortList_list_item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 95%;
+
+   background-color: #e0dfdf;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  
+  .shortList_list_item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .profile_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .user_info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user_name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  @media (max-width: 768px){
+    .shortList_list{
+      display: block;
+      padding: 10px 5px;
+    }
+  }
