@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import sentListStyle from"./sent.module.css"
 import { useEffect, useState } from "react";
 function Sent(){
-   
+   const navigate=useNavigate()
     const [users,setUsers]=useState([])
     useEffect(()=>{
         const fetchSentList=async()=>{
@@ -20,10 +21,10 @@ function Sent(){
         fetchSentList()
       },[])
     return<>
-     <div className={sentListStyle.sent_list}>
+     <div className={sentListStyle.sent_list} >
         <h2>sents</h2>
       {users.map(user => (
-        <div key={user._id} className={sentListStyle.sent_list_item} >
+        <div key={user._id} className={sentListStyle.sent_list_item} onClick={()=>navigate(`/home/userDetails/${user._id}`)} >
           <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={sentListStyle.profile_image} />
           <div className={sentListStyle.user_info}>
             <h4 className={sentListStyle.user_name}>{user.firstName} {user.lastName}</h4>

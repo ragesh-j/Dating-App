@@ -18,6 +18,9 @@ import ShortListedBy from "./pages/shortlistedBy_page/ShortListedBy";
 import Accept from "./pages/accept_page/Accept";
 import Receive from "./pages/recieved_page/Received";
 import Reject from "./pages/reject_page/Reject";
+import { SocketProvider } from "./routing/SocketProvider";
+import EditProfile from "./pages/edit_profile_page/EditProfile";
+import ServiceSelection from "./pages/service_page/Service";
 function App() {
   const ConditionalNavBar = () => {
     const location = useLocation();
@@ -26,6 +29,7 @@ function App() {
   };
   return <>
   <div className="main">
+    <SocketProvider>
     <BrowserRouter>
     <ConditionalNavBar />
     <Routes>
@@ -38,6 +42,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/genderPreference" element={<GenderPreference />} />
       <Route path='/home' element={<HomeFeed />} />
+      <Route path="/home/editProfile" element={<EditProfile />} />
       <Route path="/home/userDetails/:id" element={<UserProfileDetails /> } />
       <Route path="/home/message/:conversationId/:receiverId" element={<Message />} />
       <Route path="/home/chatList" element={<ChatList />} />
@@ -47,8 +52,10 @@ function App() {
       <Route path="/home/shortList" element={<ShortList />}/>
       <Route path="/home/shortListedBy" element={<ShortListedBy />}/>
       <Route path="/home/reject" element={<Reject />} />
+      <Route path="/service" element={<ServiceSelection />} />
     </Routes>
     </BrowserRouter>
+    </SocketProvider>
   </div>
   </>
 }

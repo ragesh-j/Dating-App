@@ -8,3 +8,11 @@
     text-align: center;
     text-decoration: underline;
   }
+
+  @media(max-width:768px){
+    .user_grid{
+      grid-template-columns: 250px;
+      box-sizing: border-box;
+    }
+    
+  }

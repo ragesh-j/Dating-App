@@ -1,0 +1,274 @@
+.main_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .profile_container {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile_form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .profile_pic_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form_profile_pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  .upload_img_div {
+    margin-top: 10px;
+  }
+  
+  .upload_img_btn {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload_img_btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .additional_img_main_div{
+    display: flex;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    justify-content: space-evenly;
+    
+}
+.additional_img{
+    width: 10rem;
+    height:12rem;
+    border: 1px solid #ccc;  
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    
+}
+.additional_img .addImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+.addBtn1{
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: auto;
+    right: auto;
+    z-index: 1;
+    cursor: pointer;
+}
+.addBtn2{
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: auto;
+    left:auto ;
+    z-index: 1;
+    cursor: pointer;
+}
+.addBtn3{
+    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: auto;
+    right: auto;
+    z-index: 1;
+    cursor: pointer;
+}
+.addBtn1:hover{
+    transform: scale(1.05); 
+}
+.addBtn2:hover{
+    transform: scale(1.05); 
+}
+.addBtn3:hover{
+    transform: scale(1.05); 
+}
+  
+  .remove_img {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
+  }
+  
+  .remove_img img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .form_group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form_group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form_group input,
+  .form_group select,
+  .textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .textarea {
+    min-height: 100px;
+    resize: none;
+  }
+  
+  .submit_btn_div {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .submit_btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .submit_btn:hover {
+    background-color: #218838;
+  }
+  
+  .cancel_btn {
+    padding: 10px 20px;
+    background-color: #ed5d5d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+  }
+  .cancel_btn:hover {
+    background-color: #e63838;
+  }
+
+  .profile_container {
+    position: relative;
+  }
+  
+  .cancel_button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .confirm_button, .close_button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .confirm_button {
+    background-color: green;
+    color: white;
+  }
+  
+  .close_button {
+    background-color: grey;
+    color: white;
+  }
+  @media (max-width: 600px) {
+    .profile_container {
+      padding: 15px;
+    }
+  
+    .form_profile_pic img {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .additional_img_main_div {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .additional_img {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .form_group input,
+    .form_group select,
+    .textarea {
+      font-size: 14px;
+    }
+  
+    .submit_btn {
+      width: 40%;
+    }
+    .cancel_btn{
+      width: 40%;
+    }
+  }
+  
+  

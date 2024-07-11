@@ -47,3 +47,17 @@
     color: #555;
     margin-top: 8px;
   }
+  @media(max-width:768){
+    .user_card {
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      height: 10rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    
+  }

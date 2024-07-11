@@ -112,6 +112,9 @@ router.get('/nearby-users', authenticateTok, async (req, res) => {
                     'profileDetails.bio': 1,
                 },
             },
+            {
+                $sample: { size: 10 },
+              },
         ]);
 
         res.json(nearbyUsers);

@@ -12,12 +12,7 @@ function HomeFeed() {
 
   useEffect(() => {
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-
-    if (token) {
-      localStorage.setItem('jwtToken', token);
-    }
+   
 
     const getLocationAndFetchUsers = async () => {
       if (navigator.geolocation) {

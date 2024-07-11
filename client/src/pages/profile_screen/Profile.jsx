@@ -25,8 +25,7 @@ function ProfileForm() {
         gender:"",
         interests:""
     });
-    const [isEditing,setIsEditing]=useState(false)
-    const method=isEditing ? 'PUT':'POST'
+   
     const handleInputChange = (e) => {
         
         const { name, value } = e.target;
@@ -41,7 +40,7 @@ function ProfileForm() {
         }
         try{
         const response=await fetch("http://localhost:8000/profile",{
-            method:method,
+            method:'POST',
             headers:{
                 'Content-Type':'application/json',
                 'Authorization':`Bearer ${token}`
@@ -52,11 +51,7 @@ function ProfileForm() {
         })
         if(response.ok){
             const data=await response.json();
-            if(!isEditing){
             navigate("/employement")
-            }else{
-                navigate("/home")
-            }
             console.log(data.message)
         }else{
             console.log("failed to save")
@@ -93,36 +88,7 @@ function ProfileForm() {
         if(token){
             localStorage.setItem('jwtToken',token)
         }
-        const fetchProfile = async () => {
-            try {
-              const response = await fetch("http://localhost:8000/profile", {
-                method: "GET",
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
-                },
-              });
-      
-              if (response.ok) {
-                const data = await response.json();
-                if (data) {
-                    console.log(data)
-                    const profileDob=data.dob ? data.dob.split('T')[0] : '';
-                  setProfile({
-                    ...data,
-                    dob:profileDob
-                  });
-                  setIsEditing(true);
-                }
-              } else {
-                console.log("No profile found");
-              }
-            } catch (err) {
-              console.log(err);
-            } 
-          };
-          fetchProfile();
-    
+       
     },[])
 
     return (

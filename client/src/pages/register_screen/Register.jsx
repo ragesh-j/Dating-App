@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "./register.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
 import { Link, useNavigate } from "react-router-dom";
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import "./register.css"
+import { SocketContext } from "../../routing/SocketProvider";
 function Register_screen(){
+    const{setIsTrue}=useContext(SocketContext)
   const navigate=useNavigate()
     const[userData,setUserData]=useState({
         first_name:"",
@@ -120,6 +122,7 @@ function Register_screen(){
                     const data=await response.json()
                     if(response.ok){
                         localStorage.setItem("jwtToken",data.token)
+                        await setIsTrue(prev=>!prev)
                         navigate("/profile")
 
                     }

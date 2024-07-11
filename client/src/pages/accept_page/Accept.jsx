@@ -1,8 +1,9 @@
 import acceptStyle from"./accept.module.css"
 import imges from "../../assets/vonecia-carswell-0aMMMUjiiEQ-unsplash.jpg"
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Accept(){
-    
+  const navigate=useNavigate()
     const [bySenderUsers,setBySenderUsers]=useState([])
     const [byReceiverUsers,setByReceiverUsers]=useState([])
     useEffect(()=>{
@@ -40,7 +41,7 @@ function Accept(){
      <div className={acceptStyle.accept_list}>
         <h2>Connection you have Accepted</h2>
       {byReceiverUsers.map(user => (
-        <div key={user._id} className={acceptStyle.accept_list_item} >
+        <div key={user._id} className={acceptStyle.accept_list_item} onClick={()=>navigate(`/home/userDetails/${user._id}`)} >
           <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={acceptStyle.profile_image} />
           <div className={acceptStyle.user_info}>
             <h4 className={acceptStyle.user_name}>{user.firstName} {user.lastName}</h4>
@@ -51,7 +52,7 @@ function Accept(){
     <div className={acceptStyle.accept_list}>
         <h2>Connection others have Accepted</h2>
       {bySenderUsers.map(user => (
-        <div key={user._id} className={acceptStyle.accept_list_item} >
+        <div key={user._id} className={acceptStyle.accept_list_item} onClick={()=>navigate(`/home/userDetails/${user._id}`)}>
           <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={acceptStyle.profile_image} />
           <div className={acceptStyle.user_info}>
             <h4 className={acceptStyle.user_name}>{user.firstName} {user.lastName}</h4>

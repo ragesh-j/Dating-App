@@ -52,6 +52,9 @@ router.get('/users-by-interests', authenticateToken, async (req, res) => {
                     'profileDetails':'$$ROOT'
                 },
             },
+            {
+                $sample: { size: 10 },
+              },
         ]);
 
         res.json(usersByInterests);
@@ -109,6 +112,9 @@ router.get('/users-by-qualification', authenticateToken, async (req, res) => {
                     'profileDetails':'$$ROOT'
                 },
             },
+            {
+                $sample: { size: 10 },
+              },
         ]);
 
         res.json(usersByInterests);

@@ -44,3 +44,6 @@
     font-size: 16px;
     font-weight: 600;
   }
+  .online{
+    border: 5px solid green;
+  }

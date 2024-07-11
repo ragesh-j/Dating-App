@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import shortListedByStyle from"./shortListedBy.module.css"
 import { useEffect, useState } from "react";
 function ShortListedBy(){
-   
+   const navigate=useNavigate()
     const [users,setUsers]=useState([])
     useEffect(()=>{
         const fetchShortListedByList=async()=>{
@@ -23,7 +24,7 @@ function ShortListedBy(){
      <div className={shortListedByStyle.shortListedBy_list}>
         <h2>Shortlisted By</h2>
       {users.map(user => (
-        <div key={user._id} className={shortListedByStyle.shortListedBy_list_item} >
+        <div key={user._id} className={shortListedByStyle.shortListedBy_list_item} onClick={()=>navigate(`/home/userDetails/${user._id}`)} >
           <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={shortListedByStyle.profile_image} />
           <div className={shortListedByStyle.user_info}>
             <h4 className={shortListedByStyle.user_name}>{user.firstName} {user.lastName}</h4>

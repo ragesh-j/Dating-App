@@ -35,6 +35,7 @@ router.get('/received-list',authenticateToken, async (req, res) => {
       },
       {
         $project: {
+          requestId:'$_id',
           _id: '$profile.user', 
           firstName: '$user.first_name', 
           lastName: '$user.last_name', 
@@ -50,5 +51,23 @@ router.get('/received-list',authenticateToken, async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
     }
   });
+
+
+  router.delete("/cancel-request",authenticateToken,async(req,res)=>{
+    
+    const userId=req.user.userId
+   const {requestId}=req.body
+   
+   try{
+    const request=await RequestModel.findOneAndDelete({_id:requestId})
+  
+    if(request){
+      return res.status(200).json({message:"Request deleted"})
+    }
+    return res.status(404).json({message:'Request not found'})
+   }catch(err){
+    res.status(500).json({message:'Server error'})
+   }
+  })
   
  module.exports=router

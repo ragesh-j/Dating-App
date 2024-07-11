@@ -64,20 +64,27 @@
 .buttons_container button:hover{
   background-color: #2a5c2a;
 }  
-.buttons_container button:last-child{
+.buttons_container button:nth-child(2){
   background-color: #e75b5b;
 }
-.buttons_container button:last-child:hover{
+.buttons_container button:nth-child(2):hover{
   background-color: #802020;
 }
+.buttons_container button:nth-child(3){
+  background-color: #585454;
+}
+.buttons_container button:nth-child(3):hover{
+  background-color: #502929;
+}
 
-@media (max-width: 768px){
+@media (max-width: 821px){
   .receive_list{
     display: block;
-    padding: 10px 5px;
+    padding: 1.5rem 5px;
   }
   .buttons_container button{
     display: block;
-    margin:1rem 0rem;
+    margin:0.5rem 0rem;
+    padding:0.2rem 0.5rem
   }
 }

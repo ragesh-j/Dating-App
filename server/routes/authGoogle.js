@@ -20,7 +20,7 @@ router.get("/auth/google/callback", (req, res, next) => {
         if (data.user.isNewUser) {
             return res.redirect(`http://localhost:3000/profile?token=${token}`);
         } else {
-            return res.redirect(`http://localhost:3000/home?token=${token}`);
+            return res.redirect(`http://localhost:3000/service?token=${token}`);
         }
     })(req, res, next);
 });

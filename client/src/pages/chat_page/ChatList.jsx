@@ -1,10 +1,14 @@
 import chatListStyle from "./chatList.module.css"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SocketContext } from "../../routing/SocketProvider";
+import classNames from 'classnames'
 function ChatList(){
-  
+  const {socket,onlineUsers}=useContext(SocketContext)
   const navigate=useNavigate()
   const [users,setUsers]=useState([])
+  const [friendOnline,setFriendOnline]=useState([])
+  const onlineFriendsIds=new Set(friendOnline.map(user=>user.userId))
   const handleMessage=async(id)=>{
     try{
       const response=await fetch('http://localhost:8000/conversations',{
@@ -43,19 +47,26 @@ function ChatList(){
     }
     fetchConversation()
   },[])
+  useEffect(()=>{
+    setFriendOnline(onlineUsers.filter(user =>users.some(anotherUser => anotherUser._id === user.userId)))
+  },[users,onlineUsers])
 
   return (
     <div className={chatListStyle.chat_list}>
         <h2>Chats</h2>
       {users.map(user => (
-        <div key={user._id} className={chatListStyle.chat_list_item} onClick={()=>handleMessage(user._id)}>
-          <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={chatListStyle.profile_image} />
+        <div key={user._id} className={chatListStyle.chat_list_item } onClick={()=>handleMessage(user._id)}>
+          <img src={user.profileImage} alt={`${user.firstName} ${user.lastName}`} className={classNames(chatListStyle.profile_image,{
+             [chatListStyle.online]: onlineFriendsIds.has(user._id)
+          })} />
           <div className={chatListStyle.user_info}>
             <h4 className={chatListStyle.user_name}>{user.firstName} {user.lastName}</h4>
           </div>
         </div>
       )).reverse()}
+       {console.log('friendOnline',friendOnline)}
     </div>
+   
   );
 };
 

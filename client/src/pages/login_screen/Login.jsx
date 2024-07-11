@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import loginStyle from "./login.module.css"
 import LoginButton from "../../component/GoogleLoginBtn";
 import { Link, useNavigate } from "react-router-dom";
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import "../register_screen/register.css"
+import { SocketContext } from "../../routing/SocketProvider";
 function Login(){
+    const{setIsTrue}=useContext(SocketContext)
     const navigate=useNavigate()
     const[userLoginData,setUserLoginData]=useState({
         contact:"",
@@ -41,6 +43,7 @@ function Login(){
                         if(response.ok){
                             
                             localStorage.setItem("jwtToken",data.token)
+                            await setIsTrue(prev=>!prev)
                             navigate("/home")
                         
                         }
