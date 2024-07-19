@@ -1,9 +1,9 @@
 const mongoose=require('mongoose')
 const router=require('express').Router()
-const ProfileModel=require("../models/profileModel")
-const UserModel=require("../models/UserModel")
-const RequestModel=require("../models/requestModel")
-const authenticateToken = require("../middleware/authenticeToken");
+const ProfileModel=require("../../models/profileModel")
+const UserModel=require("../../models/UserModel")
+const RequestModel=require("../../models/requestModel")
+const authenticateToken = require("../../middleware/authenticeToken");
 
 router.get('/sent-list',authenticateToken, async (req, res) => {
     const userId = new mongoose.Types.ObjectId(req.user.userId);

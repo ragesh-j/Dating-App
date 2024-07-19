@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const authenticateToken=require("../middleware/authenticeToken")
-const ProfileModel=require("../models/profileModel")
+const authenticateToken=require("../../middleware/authenticeToken")
+const ProfileModel=require("../../models/profileModel")
 
 
 router.post('/do-not-show', authenticateToken, async (req, res) => {

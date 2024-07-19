@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const LocationModel = require('../models/locationModel');
-const ProfileModel=require("../models/profileModel")
-const authenticateTok = require('../middleware/authenticeToken'); 
+const LocationModel = require('../../models/locationModel');
+const ProfileModel=require("../../models/profileModel")
+const authenticateTok = require('../../middleware/authenticeToken'); 
 const mongoose=require('mongoose')
 
 router.post('/save-location', authenticateTok, async (req, res) => {

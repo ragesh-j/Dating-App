@@ -21,17 +21,30 @@ import Reject from "./pages/reject_page/Reject";
 import { SocketProvider } from "./routing/SocketProvider";
 import EditProfile from "./pages/edit_profile_page/EditProfile";
 import ServiceSelection from "./pages/service_page/Service";
+import NavbarEcom from "./pages_Ecommerce/eCommerce_NavBar/NavBarEcommerce";
+import EcommereceHome from "./pages_Ecommerce/eCommerce_Homefeed/EcommerceHome";
+import ProductViewEcom from "./pages_Ecommerce/eCommerce_ProductView/ProductViewEcommerce";
+import Cart from "./pages_Ecommerce/eCommerce_Cart/Cart";
+import { CartProvider } from "./routing/CartProvider";
+
 function App() {
   const ConditionalNavBar = () => {
     const location = useLocation();
     const showNavBar = location.pathname.startsWith('/home');
     return showNavBar ? <NavBar /> : null;
   };
+  const EcommNavBar=()=>{
+    const location = useLocation();
+    const showNavBar = location.pathname.startsWith('/eCommerce-home');
+    return showNavBar ? <NavbarEcom /> : null;
+  }
   return <>
   <div className="main">
     <SocketProvider>
+    <CartProvider>
     <BrowserRouter>
     <ConditionalNavBar />
+    <EcommNavBar />
     <Routes>
       <Route path="/" element={<Splash />} />
       <Route path="/register" element={<Register_screen />}/>
@@ -53,8 +66,13 @@ function App() {
       <Route path="/home/shortListedBy" element={<ShortListedBy />}/>
       <Route path="/home/reject" element={<Reject />} />
       <Route path="/service" element={<ServiceSelection />} />
+
+      <Route path="/eCommerce-home" element={<EcommereceHome />} />
+      <Route path="/eCommerce-home/product-view/:id" element={<ProductViewEcom />} />
+      <Route path="/eCommerce-home/cart" element={<Cart />} />
     </Routes>
     </BrowserRouter>
+    </CartProvider>
     </SocketProvider>
   </div>
   </>

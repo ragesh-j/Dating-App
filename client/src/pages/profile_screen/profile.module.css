@@ -195,6 +195,10 @@
         flex-direction: column;
         gap: 0.625rem;
     }
+    .additional_img{
+        
+        height: 7rem;
+    }
 
     .form_group {
         padding: 10px;

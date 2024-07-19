@@ -21,7 +21,7 @@ function ServiceSelection() {
       <h1>Select a Service</h1>
       <div className={serviceStyle.service_buttons}>
         <button onClick={() => handleServiceClick('home')}>Dating</button>
-        <button onClick={() => handleServiceClick('ecommerce')}>eCommerce</button>
+        <button onClick={() => handleServiceClick('eCommerce-home')}>eCommerce</button>
         <button onClick={() => handleServiceClick('jobportal')}>Job Portal</button>
         <button onClick={() => handleServiceClick('matrimony-home')}>Matrimony</button>
         <button onClick={() => handleServiceClick('studyabroad')}>Study Abroad</button>

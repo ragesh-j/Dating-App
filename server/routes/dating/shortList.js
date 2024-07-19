@@ -1,8 +1,8 @@
 const mongoose=require('mongoose')
 const express=require('express')
 const router=express.Router()
-const ShortListModel=require('../models/shortListModel')
-const authenticateToken=require('../middleware/authenticeToken');
+const ShortListModel=require('../../models/shortListModel')
+const authenticateToken=require('../../middleware/authenticeToken');
 
 
 router.post('/shortlist', authenticateToken, async (req, res) => {

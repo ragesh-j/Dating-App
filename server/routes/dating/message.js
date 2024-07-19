@@ -1,6 +1,6 @@
 const express=require('express')
-const authenticateToken=require('../middleware/authenticeToken')
-const MessageModel=require('../models/messageModel')
+const authenticateToken=require('../../middleware/authenticeToken')
+const MessageModel=require('../../models/messageModel')
 const router=express.Router()
 
 router.post("/message",authenticateToken,async(req,res)=>{

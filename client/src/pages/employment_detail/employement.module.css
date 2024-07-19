@@ -64,3 +64,11 @@
     color: var(--error-color);
     margin-bottom: 1rem;
 }
+@media(max-width:728px){
+  .main_container {
+   
+    width: 300px;
+    margin: 40% auto;
+  }
+   
+}

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ProfileModel=require("../models/profileModel")
-const authenticateToken = require('../middleware/authenticeToken'); 
+const ProfileModel=require("../../models/profileModel")
+const authenticateToken = require('../../middleware/authenticeToken'); 
 const mongoose=require('mongoose')
 
 router.get('/users-by-interests', authenticateToken, async (req, res) => {

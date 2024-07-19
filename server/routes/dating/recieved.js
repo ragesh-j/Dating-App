@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const router=require('express').Router()
-const RequestModel=require("../models/requestModel")
-const authenticateToken = require("../middleware/authenticeToken");
+const RequestModel=require("../../models/requestModel")
+const authenticateToken = require("../../middleware/authenticeToken");
 
 router.get('/received-list',authenticateToken, async (req, res) => {
     const userId = new mongoose.Types.ObjectId(req.user.userId);

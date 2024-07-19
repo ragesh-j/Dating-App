@@ -1,7 +1,7 @@
 const express=require('express')
-const employementModel=require("../models/employementModel")
+const employementModel=require("../../models/employementModel")
 const router=express.Router()
-const authenticateToken=require("../middleware/authenticeToken")
+const authenticateToken=require("../../middleware/authenticeToken")
 router.post('/employement', authenticateToken, async (req, res) => {
     const userId = req.user.userId;
     const data = req.body;

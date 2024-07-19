@@ -1,15 +1,15 @@
 const mongoose=require('mongoose')
 const router=require('express').Router()
-const RequestModel=require("../models/requestModel")
-const authenticateToken = require("../middleware/authenticeToken");
+const RequestModel=require("../../models/requestModel")
+const authenticateToken = require("../../middleware/authenticeToken");
 
-router.get('/sender-accept-list',authenticateToken, async (req, res) => {
+router.get('/sender-reject-list',authenticateToken, async (req, res) => {
     const userId = new mongoose.Types.ObjectId(req.user.userId);
   
   try {
-    const acceptedRequest = await RequestModel.aggregate([
+    const rejectedRequest = await RequestModel.aggregate([
       {
-        $match: { sender: userId ,status:"accepted"} 
+        $match: { sender: userId ,status:"rejected"} 
       },
       {
         $lookup: {
@@ -42,7 +42,7 @@ router.get('/sender-accept-list',authenticateToken, async (req, res) => {
         }
       }
     ]);
-      res.status(200).json(acceptedRequest)
+      res.status(200).json(rejectedRequest)
       
     } catch (err) {
       console.error(err);
@@ -50,13 +50,13 @@ router.get('/sender-accept-list',authenticateToken, async (req, res) => {
     }
   });
 
-  router.get('/receiver-accept-list',authenticateToken, async (req, res) => {
+  router.get('/receiver-reject-list',authenticateToken, async (req, res) => {
     const userId = new mongoose.Types.ObjectId(req.user.userId);
   
   try {
-    const acceptedRequest = await RequestModel.aggregate([
+    const rejectedRequest = await RequestModel.aggregate([
       {
-        $match: { receiver: userId ,status:"accepted"} 
+        $match: { receiver: userId ,status:"rejected"} 
       },
       {
         $lookup: {
@@ -89,7 +89,7 @@ router.get('/sender-accept-list',authenticateToken, async (req, res) => {
         }
       }
     ]);
-      res.status(200).json(acceptedRequest)
+      res.status(200).json(rejectedRequest)
       
     } catch (err) {
       console.error(err);

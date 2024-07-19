@@ -261,6 +261,7 @@ return  <><div className={editProfileStyle.main_div}>
       </button>
     </div>
   </div>}
+  {console.log(profile)}
 
 </>
 }

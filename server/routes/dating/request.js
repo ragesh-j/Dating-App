@@ -1,7 +1,7 @@
 const express=require('express')
 const router=express.Router()
-const RequestModel=require('../models/requestModel')
-const authenticateToken=require('../middleware/authenticeToken')
+const RequestModel=require('../../models/requestModel')
+const authenticateToken=require('../../middleware/authenticeToken')
 
 router.post('/send-request', authenticateToken, async (req, res) => {
     const { receiverId } = req.body;

@@ -44,7 +44,7 @@ function Login(){
                             
                             localStorage.setItem("jwtToken",data.token)
                             await setIsTrue(prev=>!prev)
-                            navigate("/home")
+                            navigate("/service")
                         
                         }
                         else{

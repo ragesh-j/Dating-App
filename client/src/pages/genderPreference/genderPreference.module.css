@@ -1,6 +1,5 @@
 .profile_settings {
-
-    max-width: 400px;
+    width: 400px;
     margin: 10% auto;
     padding: 20px;
     background-color: #f5f5f5;
@@ -35,4 +34,10 @@
   
   .button:hover {
     background-color: #0056b3;
+  }
+  @media(max-width:728px){
+    .profile_settings{
+      width:300px;
+      margin: 40% auto;
+    }
   }

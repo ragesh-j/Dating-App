@@ -1,7 +1,7 @@
 const express=require('express')
-const ConversationModel=require("../models/conversationModel")
+const ConversationModel=require("../../models/conversationModel")
 const router=express.Router()
-const authenticateToken=require("../middleware/authenticeToken")
+const authenticateToken=require("../../middleware/authenticeToken")
 
 router.post('/conversations', authenticateToken, async (req, res) => {
     const senderId = req.user.userId;

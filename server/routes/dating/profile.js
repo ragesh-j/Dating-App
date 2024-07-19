@@ -1,6 +1,6 @@
 const express = require('express');
-const ProfileModel = require('../models/profileModel');
-const authenticateToken = require('../middleware/authenticeToken');
+const ProfileModel = require('../../models/profileModel');
+const authenticateToken = require('../../middleware/authenticeToken');
 const router = express.Router();
 
 router.post('/profile', authenticateToken, async (req, res) => {
