@@ -58,5 +58,47 @@ router.post('/categories', async (req, res) => {
       }
   
   })
+  router.get('/categories-with-search-items/:name',async(req,res)=>{
+    const{name}=req.params
+    try {
+      const categoriesWithItems = await CategoryModel.aggregate([
+        {$match:{name: { $regex: new RegExp(`^${name}$`, 'i') }}},
+        {
+          $lookup: {
+            from: 'items', 
+            localField: '_id', 
+            foreignField: 'categoryId', 
+            as: 'items' 
+          }
+        },
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            items: {
+              $map: {
+                input: '$items',
+                as: 'item',
+                in: {
+                  id: '$$item._id',
+                  name: '$$item.name',
+                  image: '$$item.image',
+                  price: '$$item.price',
+                  description: '$$item.description'
+                }
+              }
+            }
+          }
+        },
+        
+      ]);
+  
+      return res.status(200).json(categoriesWithItems)
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' })
+      }
+  
+  })
   
   module.exports=router

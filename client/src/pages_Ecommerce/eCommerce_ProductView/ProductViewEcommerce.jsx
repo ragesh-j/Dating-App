@@ -1,10 +1,10 @@
 
 import { useContext, useEffect, useState } from 'react'
 import ProductViewEcomStyle from './ecommerceProductView.module.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CartContext } from '../../routing/CartProvider'
 function ProductViewEcom() {
-
+  const navigate=useNavigate()
     const { id } = useParams()
     const {cartItems,setCartItems}=useContext(CartContext)
     const [product, setProduct] = useState({
@@ -27,7 +27,7 @@ function ProductViewEcom() {
                 })
                 const data = await response.json()
                 if (response.ok) {
-
+                
                     setProduct(data)
 
                 }
@@ -81,7 +81,20 @@ function ProductViewEcom() {
     const isAvailableInCart = (id) => {
         return cartItems.some(item => item.itemId._id === id);
       };
-  
+      const handleBuyNow = () => {
+        const temporaryCart = {
+          items: [
+            {
+              itemId:{_id: product._id},
+              quantity: 1,
+              price: product.price
+            }
+          ],
+          totalPrice: product.price,
+          status: "active"
+        };
+        navigate('/eCommerce-home/checkout', { state: { cart: temporaryCart } });
+      };
 
     return (<>
         <div className={ProductViewEcomStyle.product_detail_container} key={product._id}>
@@ -91,7 +104,7 @@ function ProductViewEcom() {
                    {isAvailableInCart(id) ?<button className={ProductViewEcomStyle.go_to_cart}>Go to Cart</button>:
                     <button className={ProductViewEcomStyle.add_to_cart} onClick={()=>handleAddToCart(id)}>Add to Cart</button>
                    }
-                   <button className={ProductViewEcomStyle.buy_now}>Buy Now</button>
+                   <button className={ProductViewEcomStyle.buy_now} onClick={()=>handleBuyNow()}>Buy Now</button>
                 </div>
             </div>
             <div className={ProductViewEcomStyle.product_details}>

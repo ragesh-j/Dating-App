@@ -4,7 +4,8 @@ import EcomNavStyle from './ecommerceNavBar.module.css';
 import addToCart from '../../assets/shopping-cart.png'
 import { CartContext } from '../../routing/CartProvider';
 const NavbarEcom = () => {
-  const{cartItems}=useContext(CartContext)
+  const{cartItems,searchInput,setSearchInput}=useContext(CartContext)
+  const[inputVal,setInputVal]=useState("")
   const navigate=useNavigate()
   
   return (
@@ -13,8 +14,13 @@ const NavbarEcom = () => {
         <Link to="/">E-Commerce</Link>
       </div>
       <div className={EcomNavStyle.navbar_search}>
-        <input type="text" placeholder="Search products..." />
-        <button type="button">Search</button>
+        <input type="text" placeholder="Search products..." onChange={(e)=>setInputVal(e.target.value)}/>
+        <button type="button" onClick={async (e)=>{
+          await setSearchInput(inputVal)
+          console.log(searchInput,inputVal)
+          navigate("/eCommerce-home/search")
+        }
+          }>Search</button>
       </div>
       <div className={EcomNavStyle.navbar_addToCart} onClick={()=>navigate("/eCommerce-home/cart")}>
            {cartItems.length>0 &&<span>{cartItems.length}</span>}

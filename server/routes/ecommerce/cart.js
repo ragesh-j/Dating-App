@@ -6,7 +6,6 @@ const authenticateToken = require('../../middleware/authenticeToken');
 
 const router = express.Router();
 
-// Add item to cart
 router.post('/add-to-cart',authenticateToken, async (req, res) => {
     const userId=req.user.userId
     const { itemId } = req.body;
@@ -63,6 +62,28 @@ router.put('/update-cart-item',authenticateToken, async (req, res) => {
 
     cart.totalPrice = cart.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
+    await cart.save();
+
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+router.delete('/remove-cart-item/:itemId',authenticateToken, async (req, res) => {
+  const userId=req.user.userId
+  try {
+    const { itemId } = req.params;
+    const cart = await CartModel.findOneAndUpdate(
+      { userId, status: 'active' },
+      { $pull: { items: { itemId } } },
+      { new: true }
+    ).populate('items.itemId');
+
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+    cart.totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
     await cart.save();
 
     res.status(200).json(cart);

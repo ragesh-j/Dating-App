@@ -1,0 +1,57 @@
+.order_success_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f9f9f9;
+  }
+  
+  .order_success_box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .success_image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .order_success_box h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+  
+  .order_details, .delivery_details {
+    text-align: left;
+    margin: 20px 0;
+  }
+  
+  .order_details h3, .delivery_details h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .order_success_box p {
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .continue_shopping_btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .continue_shopping_btn:hover {
+    background-color: #45a049;
+  }

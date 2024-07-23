@@ -19,8 +19,9 @@ function EcommereceHome(){
               }
             })
             const data=await response.json()
-            
+            if(response.ok){
             setCategories(data)
+            }
           }catch(err){
             console.log(err)
           }
@@ -93,7 +94,7 @@ function EcommereceHome(){
                         await handleAddToCart(item.id)
                       }}>Add to Cart</button>
                     )}
-                            </div>
+                       </div>
                       </div>
                     ))}
                   </div>

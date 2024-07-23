@@ -28,6 +28,9 @@ const RejectRoutes=require("./dating/reject")
 const CategoryRoutes=require('./ecommerce/category')
 const ItemRoutes=require('./ecommerce/item')
 const CartRoutes=require('./ecommerce/cart')
+const AddressRoutes=require('./ecommerce/address')
+const RazorPayRoutes=require('./ecommerce/razorPay')
+const OrderRoutes=require('./ecommerce/order')
 app.use(express.json());
 app.use(passport.initialize());
 
@@ -53,4 +56,7 @@ app.use("/",RejectRoutes)
 app.use('/ecommerce',CategoryRoutes)
 app.use('/ecommerce',ItemRoutes)
 app.use('/ecommerce',CartRoutes)
+app.use('/ecommerce',AddressRoutes)
+app.use("/",RazorPayRoutes)
+app.use('/ecommerce',OrderRoutes)
 module.exports=app

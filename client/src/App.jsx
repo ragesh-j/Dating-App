@@ -26,6 +26,10 @@ import EcommereceHome from "./pages_Ecommerce/eCommerce_Homefeed/EcommerceHome";
 import ProductViewEcom from "./pages_Ecommerce/eCommerce_ProductView/ProductViewEcommerce";
 import Cart from "./pages_Ecommerce/eCommerce_Cart/Cart";
 import { CartProvider } from "./routing/CartProvider";
+import CheckoutPage from "./pages_Ecommerce/eCommerce_Checkout/Checkout";
+import OrderSuccess from "./pages_Ecommerce/eCommerce_success/Success";
+import Search from "./pages_Ecommerce/eCommerce_Search/Search";
+
 
 function App() {
   const ConditionalNavBar = () => {
@@ -70,6 +74,9 @@ function App() {
       <Route path="/eCommerce-home" element={<EcommereceHome />} />
       <Route path="/eCommerce-home/product-view/:id" element={<ProductViewEcom />} />
       <Route path="/eCommerce-home/cart" element={<Cart />} />
+      <Route path="/eCommerce-home/checkout" element={<CheckoutPage />} />
+      <Route path="/eCommerce-home/success/:id" element={<OrderSuccess />} />
+      <Route path="/eCommerce-home/search" element={<Search />} />
     </Routes>
     </BrowserRouter>
     </CartProvider>
